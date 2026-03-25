@@ -7,7 +7,6 @@ function Login() {
 
 // bring in setter function from the context
     const { setUser } = useUser()
-    // console.log(user)
 
     const navigate = useNavigate()
 
@@ -25,8 +24,6 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // console.log(form)
-   
         try {
 // send form data to our backend
             const { data } = await userClient.post('/login', form)
@@ -41,13 +38,13 @@ function Login() {
         catch (err) {
             console.error(err)
             alert(err.message)
-        }
-        
+        }   
     }
 
     return (
         <div>
             <h1>Login Page</h1>
+            
             <form onSubmit={handleSubmit}>
                
                 <label htmlFor="email">email:</label>

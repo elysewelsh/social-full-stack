@@ -7,7 +7,6 @@ function Register() {
 
 // bring in setter function from the context
     const { setUser } = useUser()
-    // console.log(user)
 
     const navigate = useNavigate()
 
