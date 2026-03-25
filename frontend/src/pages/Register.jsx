@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { userClient } from '../clients/api.js'
 
 function Register() {
 
@@ -15,10 +16,36 @@ function Register() {
         })
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        console.log(form)
+
+        
+        try {
+// send form data to our backend
+            const { data } = await userClient.post('/register', form)
+            console.log(data)
+// take the token and store it locally in localStorage
+            localStorage.setItem("token", data.token)
+        }
+        catch (err) {
+            console.error(err)
+            alert(err.message)
+        }
+        
+
+        
+
+        // save some user data in our state
+
+        // take the user to a different page
+    }
+
     return (
         <div>
             <h1>Register Page</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">username:</label>
                 <input 
                     value={form.username}
@@ -45,7 +72,7 @@ function Register() {
                     onChange={handleChange}
                     id="password"
                     name="password"
-                    type="text"
+                    type="password"
                     required
                 />
 
