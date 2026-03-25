@@ -14,7 +14,7 @@ function App() {
 
 const { user } = useUser()
 
-console.log(user)
+// console.log(user)
 
 // useEffect(() => {
 //     async function getData() {

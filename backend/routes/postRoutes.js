@@ -22,7 +22,11 @@ router.post('/', async (req,res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find({})
+        const posts = await Post.find(
+            {
+                author: {$eq: req.user._id}
+            }
+        )
         res.status(200).json(posts)
     }
     catch (err) {

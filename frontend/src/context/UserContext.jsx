@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const UserContext = createContext(null)
 
 // custom provider to wrap the app
-export function UserProvider({ children }) {
+function UserProvider({ children }) {
 
     const [user, setUser] = useState(null)
 
@@ -38,3 +38,5 @@ export function UserProvider({ children }) {
 export function useUser() {
     return useContext(UserContext)
 }
+
+export default UserProvider
