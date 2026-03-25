@@ -18,18 +18,39 @@ function Register() {
     return (
         <div>
             <h1>Register Page</h1>
-        <form>
-            <label htmlFor="username">username:</label>
-            <input value={form.username} id="username" name="username" type="text" required />
-            
-            <label htmlFor="email">email:</label>
-            <input value={form.email} id="email" name="email" type="text" required />
-            
-            <label htmlFor="password">password:</label>
-            <input value={form.password} id="password" name="password" type="text" required />
+            <form>
+                <label htmlFor="username">username:</label>
+                <input 
+                    value={form.username}
+                    onChange={handleChange}
+                    id="username"
+                    name="username"
+                    type="text"
+                    required
+                />
+                
+                <label htmlFor="email">email:</label>
+                <input
+                    value={form.email}
+                    onChange={handleChange}
+                    id="email"
+                    name="email"
+                    type="text"
+                    required 
+                />
+                
+                <label htmlFor="password">password:</label>
+                <input
+                    value={form.password}
+                    onChange={handleChange}
+                    id="password"
+                    name="password"
+                    type="text"
+                    required
+                />
 
-            <button>Register</button>
-        </form>
+                <button>Register</button>
+            </form>
         </div>
     )
 }
