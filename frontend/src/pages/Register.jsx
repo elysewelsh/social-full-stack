@@ -1,12 +1,15 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { userClient } from '../clients/api.js'
 import { useUser } from '../context/UserContext.jsx'
 
 function Register() {
 
+// bring in setter function from the context
+    const { setUser } = useUser()
+    // console.log(user)
 
-    const value = useUser()
-    console.log(value)
+    const navigate = useNavigate()
 
     const [form, setForm] = useState({
         username: '',
@@ -33,6 +36,10 @@ function Register() {
             console.log(data)
 // take the token and store it locally in localStorage
             localStorage.setItem("token", data.token)
+// save some user data in our state
+            setUser(data.user)
+// take the user to a different page
+            navigate("/feed")
         }
         catch (err) {
             console.error(err)
@@ -42,9 +49,9 @@ function Register() {
 
         
 
-        // save some user data in our state
 
-        // take the user to a different page
+
+
     }
 
     return (

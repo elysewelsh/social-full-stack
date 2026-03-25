@@ -26,6 +26,7 @@ useEffect(() => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/feed" element={<Feed />} />
+        <Route path="/" element={<Feed />} />
     </Routes>
     </>
   )
