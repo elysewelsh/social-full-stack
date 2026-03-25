@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const UserContext = createContext(null)
 
@@ -7,9 +8,23 @@ export function UserProvider({ children }) {
 
     const [user, setUser] = useState(null)
 
+    const navigate = useNavigate()
+
+    const logout = () => {
+        //clear the user/state
+        setUser(null)
+
+        //clear the localStorage
+        localStorage.removeItem("token")
+
+        //navigate user to login page
+        navigate('/login')
+    }
+
     const value = {
         user,
-        setUser
+        setUser,
+        logout
     }
 
     return (
