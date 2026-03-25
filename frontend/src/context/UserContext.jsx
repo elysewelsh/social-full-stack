@@ -1,8 +1,9 @@
-import { createContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 const UserContext = createContext(null)
 
-function UserProvider({ children }) {
+// custom provider to wrap the app
+export function UserProvider({ children }) {
 
     const [user, setUser] = useState(null)
 
@@ -18,4 +19,7 @@ function UserProvider({ children }) {
     )
 }
 
-export default UserProvider
+// custom hook to easily access context value
+export function useUser() {
+    return useContext(UserContext)
+}

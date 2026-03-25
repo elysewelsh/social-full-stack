@@ -1,7 +1,12 @@
 import { useState } from 'react'
 import { userClient } from '../clients/api.js'
+import { useUser } from '../context/UserContext.jsx'
 
 function Register() {
+
+
+    const value = useUser()
+    console.log(value)
 
     const [form, setForm] = useState({
         username: '',
