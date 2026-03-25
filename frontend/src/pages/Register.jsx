@@ -46,12 +46,6 @@ function Register() {
             alert(err.message)
         }
         
-
-        
-
-
-
-
     }
 
     return (
