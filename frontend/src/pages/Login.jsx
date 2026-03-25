@@ -25,9 +25,8 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(form)
-
-        
+        // console.log(form)
+   
         try {
 // send form data to our backend
             const { data } = await userClient.post('/login', form)
