@@ -1,29 +1,19 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { token } from '../clients/api.js'
+import { token, userClient } from '../clients/api.js'
 
 const UserContext = createContext(null)
+
+// check if there's a token, if so: assume there's a user
+const initialUser = token() ? { username: null} : null
 
 // custom provider to wrap the app
 function UserProvider({ children }) {
 
-    const [user, setUser] = useState(null)
+// set the initial state to null or temp user
+    const [user, setUser] = useState(initialUser)
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-
-        async function getUser() {
-// check if there's a token (if none, skip these steps)
-            if (!token()) return
-// if token exists, use token to verify the user (valid token check/expired)
-            
-// if verified, save user data to state
-
-// if verification fails, log user out
-        }
-        // getUser()
-    },[])
 
     const logout = () => {
         //clear the user/state
@@ -35,6 +25,27 @@ function UserProvider({ children }) {
         //navigate user to login page
         navigate('/login')
     }
+
+    useEffect(() => {
+
+        async function getUser() {
+            try {
+// check if there's a token (if none, skip these steps)
+                if (!token()) return
+// if token exists, use token to verify the user (valid token check/expired)
+                const { data } = await userClient.get('/')
+// if verified, save user data to state
+                setUser(data)
+            }
+            catch(err) {
+                console.error(err)
+// if verification fails, log user out
+                logout()
+            }
+        }
+        getUser()
+    }, [])
+
 
     const value = {
         user,
