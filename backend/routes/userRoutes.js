@@ -2,6 +2,7 @@ import express from 'express'
 import User from '../models/User.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { authMiddleware } from '../utils/auth.js'
 
 const router = express.Router()
 const saltRounds = 10
@@ -60,6 +61,13 @@ router.post('/login', async (req, res) => {
         console.error(err)
         res.status(400).json(err)
     }
+})
+
+// verify the logged-in user's token
+router.use(authMiddleware)
+// after verification, send back user details
+router.get('/', (req, res) => {
+    res.status(200).json(req.user)
 })
 
 export default router
