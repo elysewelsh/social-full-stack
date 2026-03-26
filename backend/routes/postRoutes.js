@@ -22,11 +22,18 @@ router.post('/', async (req,res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find(
+        const posts = await Post
+        .find(
             {
                 author: {$eq: req.user._id}
             }
         )
+        .sort(
+            { 
+                createdAt: -1
+            }
+        )
+        .populate('author')
         res.status(200).json(posts)
     }
     catch (err) {

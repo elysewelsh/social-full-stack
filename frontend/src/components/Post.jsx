@@ -1,12 +1,13 @@
 function Post({ post }) {
 
-    const date = new Date(post.createdAt)
+    let date = new Date(post.createdAt)
 
     return (
-        <div key={post._id}>
+        <div>
             <h3>{post.title}</h3>
             <div>{date.toLocaleDateString()} {date.toLocaleTimeString()}</div>
             <p>{post.body}</p>
+            <p>{post.author.username}</p>
         </div>
     )
 }

@@ -14,13 +14,13 @@ useEffect(() => {
     async function getData() {
         try {
 // get our posts from database
-        const response = await postClient.get('/')
-        const posts = response.data
+        const { data } = await postClient.get('/')
+        // const posts = response.data
 // save that in component's/local state variable
-        setPosts(posts)
+        setPosts(data)
         }
         catch (err) {
-            console.error(err)
+            console.error(err.response.data)
             alert(err.message)
         }
     }
