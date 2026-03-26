@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { postClient } from '../clients/api.js'
+import Post from '../components/Post.jsx'
 
 function Feed() {
 
@@ -25,14 +26,9 @@ useEffect(() => {
     return (
         <div>
             <h1>Feed Page</h1>
-            <ul>
-                {posts.map(post => 
-                    <li key={post._id}>
-                        <h4>{post.title}</h4>
-                        <p>{post.body}</p>
-                    </li>
-                )}
-            </ul>
+            {posts.map(post => <Post post={post} key={post._id}/>)}
+            
+
         </div>
     )
 }
