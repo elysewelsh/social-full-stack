@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
         const posts = await Post
         .find(
             {
-                author: {$eq: req.user._id}
+                // author: {$eq: req.user._id}
             }
         )
         .sort(
