@@ -12,6 +12,8 @@ router.post('/', async (req,res) => {
             ...req.body,
             author: req.user._id
         })
+        await posts
+        .populate('author', 'username')
         res.status(200).json(posts)
     }
     catch (err) {
